@@ -2,7 +2,7 @@
 	header_up X-Forwarded-Host {host}
 	transport http {
 		dial_timeout 5s
-		tls_insecure_skip_verify
+		#tls_insecure_skip_verify
 	}
 	flush_interval -1
 }

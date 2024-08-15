@@ -59,6 +59,7 @@
          @drop.prevent="handleDrop" @paste.prevent="handlePaste" :class="{'border-blue-500': dragover}">
         <input type="file" class="hidden" x-ref="fileInput" @change="handleFileSelect" multiple accept="image/*">
         <p class="text-gray-600">点击、拖拽或粘贴图片上传。</p>
+        <p style="color: red">每张图不超过5M</p>
     </div>
 
     <div class="mt-6" x-show="images.length > 0">
@@ -197,7 +198,8 @@
                                     preview: image.preview
                                 });
                             } else {
-                                throw new Error('Invalid response format');
+                                // throw new Error('Invalid response format');
+                                throw new Error(data.error.message);
                             }
                         })
                         .catch(error => {
