@@ -1,0 +1,25 @@
+(default_transport) {
+	header_up X-Forwarded-Host {host}
+	transport http {
+		dial_timeout 5s
+		tls_insecure_skip_verify
+	}
+	flush_interval -1
+}
+
+:8080 {
+	root * ./
+	file_server
+	encode gzip
+
+	rewrite /upload /api/upload/telegraph
+	reverse_proxy /api/upload/telegraph https://www.ossking.com {
+		header_up Host www.ossking.com
+		import default_transport
+	}
+
+    reverse_proxy /file/* https://ossk.cc {
+		header_up Host ossk.cc
+		import default_transport
+    }
+}
