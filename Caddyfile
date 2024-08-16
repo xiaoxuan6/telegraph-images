@@ -22,4 +22,9 @@
 		header_up Host ossk.cc
 		import default_transport
     }
+
+    @blocked {
+        path /Caddyfile
+    }
+    respond @blocked 403
 }
