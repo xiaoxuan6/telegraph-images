@@ -1,5 +1,6 @@
 (default_transport) {
 	header_up X-Forwarded-Host {host}
+	header_up Auth-Token uzx8gw1E0VzvdBQmrXrjFbj7eRxwNvS6
 	transport http {
 		dial_timeout 5s
 		#tls_insecure_skip_verify
@@ -12,14 +13,14 @@
 	file_server
 	encode gzip
 
-	rewrite /upload /api/upload/telegraph
-	reverse_proxy /api/upload/telegraph https://www.ossking.com {
-		header_up Host www.ossking.com
+	rewrite /upload /image
+	reverse_proxy /image https://i.111666.best {
+		header_up Host i.111666.best
 		import default_transport
 	}
 
-    reverse_proxy /file/* https://ossk.cc {
-		header_up Host ossk.cc
+    reverse_proxy /image/* https://i.111666.best {
+		header_up Host i.111666.best
 		import default_transport
     }
 

@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Telegraph图床</title>
+    <title>16图床</title>
     <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdn.jsdelivr.net/npm/alpinejs@2.3.0/dist/alpine.js"
@@ -52,14 +52,14 @@
     </svg>
 </a>
 <div class="bg-white p-8 rounded-lg shadow-md w-full max-w-4xl">
-    <h1 class="text-2xl font-bold mb-6 text-center text-gray-800">Telegraph 图床</h1>
+    <h1 class="text-2xl font-bold mb-6 text-center text-gray-800">16 图床</h1>
 
     <div class="border-dashed border-2 border-gray-400 rounded-lg p-8 text-center cursor-pointer hover:border-blue-500 transition duration-300"
          @click="$refs.fileInput.click()" @dragover.prevent="dragover = true" @dragleave.prevent="dragover = false"
          @drop.prevent="handleDrop" @paste.prevent="handlePaste" :class="{'border-blue-500': dragover}">
         <input type="file" class="hidden" x-ref="fileInput" @change="handleFileSelect" multiple accept="image/*">
         <p class="text-gray-600">点击、拖拽或粘贴图片上传。</p>
-        <p style="color: red">每张图不超过5M</p>
+<!--        <p style="color: red">每张图不超过5M</p>-->
     </div>
 
     <div class="mt-6" x-show="images.length > 0">
@@ -191,8 +191,8 @@
                         .then(response => response.json())
                         .then(data => {
                             image.status = '已完成';
-                            if (data && data.code === 0 && data.data.url) {
-                                const fullUrl = new URL(data.data.url, window.location.href).href;
+                            if (data && data.ok === true && data.src) {
+                                const fullUrl = new URL(data.src, window.location.href).href;
                                 this.uploadedUrls.push({
                                     url: fullUrl,
                                     preview: image.preview
