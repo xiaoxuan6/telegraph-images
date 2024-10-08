@@ -191,6 +191,7 @@
                         .then(response => response.json())
                         .then(data => {
                             image.status = '已完成';
+                            console.log('data', data)
                             if (data && data.ok === true && data.src) {
                                 const fullUrl = new URL(data.src, window.location.href).href;
                                 this.uploadedUrls.push({
@@ -203,7 +204,7 @@
                             }
                         })
                         .catch(error => {
-                            console.error('Upload failed:', error);
+                            console.log('Upload failed:', error);
                             image.status = '失败';
                         })
                         .finally(() => {
