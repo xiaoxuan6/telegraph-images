@@ -1,5 +1,4 @@
 (default_transport) {
-	header_up X-Forwarded-Host {host}
 	header_up Auth-Token uzx8gw1E0VzvdBQmrXrjFbj7eRxwNvS6
 	transport http {
 		dial_timeout 5s
@@ -19,13 +18,13 @@
 		import default_transport
 	}
 
-    reverse_proxy /image/* https://i.111666.best {
+	reverse_proxy /image/* https://i.111666.best {
 		header_up Host i.111666.best
 		import default_transport
-    }
+	}
 
-    @blocked {
-        path /Caddyfile
-    }
-    respond @blocked 403
+	@blocked {
+		path /Caddyfile
+	}
+	respond @blocked 403
 }
